@@ -1,0 +1,28 @@
+[% INCLUDE 'include/header.tt' %]
+
+<form method="post" action="[% c.url_for('index/post') %]">
+  <input type="text" name="body" />
+  <input type="submit" value="送信" />
+</form>
+
+
+<table>
+<tr>
+  <th>entry_id</th>
+  <th>body</th>
+  <th>delete</th>
+  <th>updated_at</th>
+  <th>created_at</th>
+</tr>
+[% FOR entry IN entries %]
+<tr>
+  <td>[% entry.entry_id %].</td>
+  <td>[% entry.body %]</td>
+  <td><a href="[% c.url_for('index/delete', entry_id => $entry.entry_id) %]">delete</a></td>
+  <td>[% entry.updated_at %]</td>
+  <td>[% entry.created_at %]</td>
+</tr>
+[% END %]
+</table>
+
+[% INCLUDE 'include/footer.tt' %]
